@@ -8,8 +8,9 @@ import {
     StyleSheet,
     TabBarTop,
 } from 'react-native';
-import {TabBarBottom,TabNavigator} from 'react-navigation';
+import {TabBarBottom,TabNavigator,createStackNavigator,createDrawerNavigator,createTabNavigator} from 'react-navigation';
 import Icon from "react-native-vector-icons/Ionicons";
+import StackDemo from './StackDemo';
 class Screen1 extends Component{
     componentDidMount(){
         this._navListener=this.props.navigation.addListener('didFocus',()=>{
@@ -21,7 +22,7 @@ class Screen1 extends Component{
     componentWillUnmount(){
         this._navListener.remove();
     }
-        render(){
+    render(){
         return(
             <SafeAreaView style={[styles.container,{backgroundColor:'#6a51ae'}]}>
                 <StatusBar
@@ -36,7 +37,7 @@ class Screen1 extends Component{
                     onPress={()=>this.props.navigation.navigate('Screen2')}
                     color='blue'
                 />
-              {/*  <Button
+                {/*  <Button
                     title="Toggle Drawer"
                     onPress={() => this.props.navigation.openDrawer()}
                     color="blue"
@@ -66,7 +67,7 @@ class Screen2 extends Component{
                     onPress={()=>this.props.navigation.navigate('Screen1')}
 
                 />
-               {/* <Button
+                {/* <Button
                     title="Toggle Drawer"
                     onPress={() => this.props.navigation.openDrawer()}
                 />*/}
@@ -105,37 +106,37 @@ const styles = StyleSheet.create({
     },
 });
 
-const TabDemo=TabNavigator({
-    Screen1:{
-        screen:Screen1,
-        navigationOptions:({navigation}) => ({
-            tabBarIcon: ({ focused, tintColor }) => {
+const NavigationDemo=TabNavigator({
+        Screen1:{
+            screen:StackDemo,
+            navigationOptions:({navigation}) => ({
+                tabBarIcon: ({ focused, tintColor }) => {
 
-              return     <Icon name='ios-home' size={25} color={tintColor} />
+                    return     <Icon name='ios-home' size={25} color={tintColor} />
 
-            },
-        }),
-    },
-    Screen2:{
-        screen:Screen2,
-        navigationOptions: ({navigation})=>({
-            tabBarIcon: ({ focused, tintColor }) => {
-
-                return  <Icon name='ios-chatboxes' size={25} color={tintColor} />;
-            },
-        })
+                },
+            }),
         },
-    Screen3:{
-        screen:Screen3,
-        navigationOptions: ({navigation})=>({
-            tabBarIcon: ({ focused, tintColor }) => {
+        Screen2:{
+            screen:Screen2,
+            navigationOptions: ({navigation})=>({
+                tabBarIcon: ({ focused, tintColor }) => {
 
-                return  <Icon name='ios-menu' size={25} color={tintColor} />;
-            },
-        })
-    }
+                    return  <Icon name='ios-chatboxes' size={25} color={tintColor} />;
+                },
+            })
+        },
+        Screen3:{
+            screen:Screen3,
+            navigationOptions: ({navigation})=>({
+                tabBarIcon: ({ focused, tintColor }) => {
 
-},
+                    return  <Icon name='ios-menu' size={25} color={tintColor} />;
+                },
+            })
+        }
+
+    },
     {
 
 
@@ -143,7 +144,7 @@ const TabDemo=TabNavigator({
             style: {
                 height:49
             },
-          /*  showIcon: true,*///android 默认不显示 icon, 需要设置为 true 才会显示
+            /*  showIcon: true,*///android 默认不显示 icon, 需要设置为 true 才会显示
             activeTintColor: 'tomato',
             inactiveTintColor: 'gray',
             showLabel:false,
@@ -155,5 +156,5 @@ const TabDemo=TabNavigator({
         swipeEnabled:false,
         animationEnabled:false,
     }
-    )
-export default TabDemo;
+)
+export default NavigationDemo;
