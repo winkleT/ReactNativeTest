@@ -9,8 +9,36 @@ import {
 } from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import ContactScreen from './ContactScreen';
 
 class Stack1 extends Component{
+    static  navigationOptions=({navigation}) =>  ({
+        title:"Home",
+        headerLeft:(
+
+        <Icon.Button name='user'
+        size={20}
+        style={{color: 'white',backgroundColor: 'tomato'}}
+        onPress={()=>{
+            navigation.navigate('Second');
+        }}/>
+
+        ),
+        headerTitleStyle: {
+            flex:1,
+            textAlign: 'center',
+            color: 'white',
+        },
+        headerRight: (
+        <Icon name='plus' size={20} style={{marginRight: 10,color: 'white'}}
+
+        />
+        ),
+        headerStyle:{
+            backgroundColor:'tomato',
+            height:35,
+        }
+    })
     componentDidMount(){
         this._navListener=this.props.navigation.addListener('didFocus',()=>{
             StatusBar.setBarStyle('light-content');
@@ -62,35 +90,10 @@ const styles=StyleSheet.create({
 const StackDemo=StackNavigator({
     First: {
         screen:Stack1,
-        navigationOptions:{
-            title:"Home",
-            headerLeft:(
 
-                  <Icon.Button name='user'
-                               size={20}
-                               style={{color: 'white',backgroundColor: 'tomato'}}
-                               onPress={()=>{
-                                   Alert.alert("123");
-                               }}/>
-
-            ),
-            headerTitleStyle: {
-                flex:1,
-                textAlign: 'center',
-                color: 'white',
-            },
-            headerRight: (
-                <Icon name='plus' size={20} style={{marginRight: 10,color: 'white'}}/>
-            ),
-            headerStyle:{
-                backgroundColor:'tomato',
-                height:35,
-            }
-
-        }
     },
     Second:{
-        screen: Stack2,
+        screen: ContactScreen,
     } ,
     Third: {
         screen:Stack3,

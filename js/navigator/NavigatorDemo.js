@@ -24,6 +24,7 @@ class OtherScreen extends Component{
     static navigationOptions={
         headerTitle:"I'M DONE"
     }
+
     render(){
         return(
             <Button onPress={()=>this.props.navigation.navigate('HomeScreen')}

@@ -11,42 +11,6 @@ import {
 import {TabBarBottom,TabNavigator,createStackNavigator,createDrawerNavigator,createTabNavigator} from 'react-navigation';
 import Icon from "react-native-vector-icons/Ionicons";
 import StackDemo from './StackDemo';
-class Screen1 extends Component{
-    componentDidMount(){
-        this._navListener=this.props.navigation.addListener('didFocus',()=>{
-            StatusBar.setBarStyle('light-content');
-            StatusBar.setBackgroundColor('#6a51ae');
-
-        });
-    }
-    componentWillUnmount(){
-        this._navListener.remove();
-    }
-    render(){
-        return(
-            <SafeAreaView style={[styles.container,{backgroundColor:'#6a51ae'}]}>
-                <StatusBar
-                    barStyle="light-content"
-                    backgroundColor='#aaea55'
-                />
-                <Text style={{color:'#fff',textAlign:'center'}}>
-                    Light Screen
-                </Text>
-                <Button
-                    title="Next Screen"
-                    onPress={()=>this.props.navigation.navigate('Screen2')}
-                    color='blue'
-                />
-                {/*  <Button
-                    title="Toggle Drawer"
-                    onPress={() => this.props.navigation.openDrawer()}
-                    color="blue"
-                />*/}
-            </SafeAreaView>
-        )
-    }
-
-}
 class Screen2 extends Component{
     componentDidMount(){
         this._navListener=this.props.navigation.addListener('didFocus',()=>{
